@@ -1,0 +1,41 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+##ref https://github.com/R0ckie/Laboratory-10/blob/main/Lab_10.ipynb
+
+def scatter_plot(x):
+    size= (5,5)
+    plt.figure(figsize=(4,4))
+
+    plt.xlim(-size[0],size[0])
+    plt.ylim(-size[1],size[1])
+
+    plt.xticks(np.arange((-size[0]), size[0]+1, 1.0))
+    plt.yticks(np.arange((-size[1]), size[1]+1, 1.0))
+
+    plt.scatter(x[:,0], x[1,:])
+
+    plt.grid()
+    plt.show()
+
+def rotate_mat(theta):
+    theta = np.deg2rad(theta)
+    rotate_mat = np.array([
+        [np.cos(theta), -np.sin(theta)],
+        [np.sin(theta), np.cos(theta)]
+    ])
+    return rotate_mat
+
+def return_matrix(y):
+  print(np.matrix(y[:,:]))
+
+X = np.array([
+              [-1, 2],
+              [2, -1]
+])
+
+rotate = rotate_mat(80)
+scatter_plot(X)
+return_matrix(X)
+scatter_plot(X @ rotate)
+return_matrix(X @ rotate)
